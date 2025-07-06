@@ -432,6 +432,107 @@
             }
         }
 
+        /* Image Placeholders and Gallery */
+        .image-placeholder {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            margin: 1rem 0;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .image-placeholder .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .screenshot-container {
+            position: relative;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .screenshot-placeholder {
+            aspect-ratio: 16/9;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .screenshot-caption {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background: var(--light-color);
+        }
+
+        /* Chart and Diagram Styles */
+        .chart-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .flowchart {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .flowchart-step {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .flowchart-arrow {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0 1rem;
+        }
+
         /* Utility Classes */
         .text-center { text-align: center; }
         .text-right { text-align: right; }
@@ -564,6 +665,19 @@
                         <div class="alert alert-success">
                             <strong>July 6, 2025:</strong> 99.9% of current and relevant information has been translated and updated for Global. Screenshots and verification ongoing.
                         </div>
+
+                        <h3>How to Add Images to This Guide</h3>
+                        <div class="card">
+                            <h4>For Users Who Want to Add Screenshots</h4>
+                            <p>This website currently shows placeholder areas where images from the original guide should go. To add actual images:</p>
+                            <ol>
+                                <li>Save screenshots from the game or original guide</li>
+                                <li>Upload images to an image hosting service (imgur, etc.)</li>
+                                <li>Replace the placeholder divs with actual <code>&lt;img&gt;</code> tags</li>
+                                <li>Update the src attributes with your image URLs</li>
+                            </ol>
+                            <p><strong>Key images needed:</strong> Training interface, inheritance screen, support card examples, tier list visuals, race interfaces, and skill activation examples.</p>
+                        </div>
                     </div>
 
                     <!-- Getting Started Section -->
@@ -653,9 +767,19 @@
                         <h2>Training Strategy</h2>
 
                         <h3>Basic Training Flow</h3>
-                        <div class="card">
-                            <h4>Early Phase Strategy</h4>
-                            <p>Focus on raising bond levels of support cards. Once every card is bonded, wait for rainbows and train Wisdom or do races if no rainbow is available.</p>
+                        <div class="flowchart">
+                            <div class="flowchart-step">Bond Support Cards</div>
+                            <span class="flowchart-arrow">→</span>
+                            <div class="flowchart-step">Wait for Rainbows</div>
+                            <span class="flowchart-arrow">→</span>
+                            <div class="flowchart-step">Train Wisdom/Race if No Rainbow</div>
+                        </div>
+
+                        <div class="image-placeholder">
+                            <div class="icon">📊</div>
+                            <h4>Training Flow Chart</h4>
+                            <p>Interactive flowchart showing optimal training decisions</p>
+                            <small>Image placeholder - Replace with actual training flowchart from guide</small>
                         </div>
 
                         <h3>Support Card Builds by Distance</h3>
@@ -744,44 +868,33 @@
                             <strong>Note:</strong> These tier lists are based on cards' ability to provide stats. You may choose lower tier cards for specific skills (e.g., Super Creek for Swinging Maestro).
                         </div>
 
+                        <div class="image-grid">
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    Support Card Interface
+                                </div>
+                                <div class="screenshot-caption">
+                                    Support card selection screen showing bond levels and training bonuses
+                                </div>
+                            </div>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    Kitasan Black MLB Stats
+                                </div>
+                                <div class="screenshot-caption">
+                                    Max limit break Kitasan Black - the most powerful support card
+                                </div>
+                            </div>
+                        </div>
+
                         <h3>Speed Support Cards</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Tier</th>
-                                        <th>MLB Cards</th>
-                                        <th>2LB Cards</th>
-                                        <th>0LB Cards</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>S</strong></td>
-                                        <td>Kitasan Black</td>
-                                        <td>Kitasan Black</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>A</strong></td>
-                                        <td>Biko Pegasus, Kawakami Princess</td>
-                                        <td>Biko Pegasus</td>
-                                        <td>Kitasan Black</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>B</strong></td>
-                                        <td>Tokai Teio, Special Week, Shinko Windy</td>
-                                        <td>Kawakami Princess, Tokai Teio</td>
-                                        <td>Biko Pegasus</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>C</strong></td>
-                                        <td>Gold City, Sweep Tosho</td>
-                                        <td>Special Week, Shinko Windy</td>
-                                        <td>Tokai Teio, Special Week</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="chart-container">
+                            <img src="https://i.imgur.com/r4qMaU1.png" 
+                                 alt="Speed Support Card Tier List" 
+                                 style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                                <strong>Note:</strong> Kitasan Black dominates the Speed tier list. Cards with 10% Race Bonus are marked with special indicators.
+                            </p>
                         </div>
 
                         <h3>Stamina Support Cards</h3>
@@ -789,43 +902,47 @@
                             <strong>Super Creek Note:</strong> Although only C tier for stats, her skill is practically required for Medium/Long distance umas. Having her lets you borrow MLB Kitasan instead.
                         </div>
 
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Tier</th>
-                                        <th>MLB Cards</th>
-                                        <th>2LB Cards</th>
-                                        <th>0LB Cards</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>S</strong></td>
-                                        <td>Vodka, Rice Shower</td>
-                                        <td>Vodka, Rice Shower</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>A</strong></td>
-                                        <td>McQueen, Satono Diamond</td>
-                                        <td>McQueen, Satono Diamond</td>
-                                        <td>Vodka, Rice Shower</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>B</strong></td>
-                                        <td>Manhattan Cafe, Sakura Chiyono</td>
-                                        <td>Manhattan Cafe</td>
-                                        <td>McQueen, Satono Diamond</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>C</strong></td>
-                                        <td>Super Creek</td>
-                                        <td>Super Creek</td>
-                                        <td>Super Creek</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="chart-container">
+                            <img src="https://i.imgur.com/jXRqVzq.png" 
+                                 alt="Stamina Support Card Tier List" 
+                                 style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                                <strong>Key Point:</strong> McQueen 3LB is essentially the same power as McQueen MLB. Super Creek's low ranking is due to stat provision, not skill value.
+                            </p>
+                        </div>
+
+                        <h3>Power Support Cards</h3>
+                        <div class="chart-container">
+                            <img src="https://i.imgur.com/E6KMoTe.png" 
+                                 alt="Power Support Card Tier List" 
+                                 style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                                <strong>Strategy Note:</strong> Power cards are often chosen for skills rather than stats, since Speed cards provide significant Power bonuses when using MLB Kitasan.
+                            </p>
+                        </div>
+
+                        <h3>Guts Support Cards</h3>
+                        <div class="alert alert-info">
+                            <strong>Usage Note:</strong> Guts cards are typically only used for high score attempts. Only MLB cards are shown since Guts doesn't scale well.
+                        </div>
+
+                        <div class="chart-container">
+                            <img src="https://i.imgur.com/bEm3ntu.png" 
+                                 alt="Guts Support Card Tier List" 
+                                 style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                                <strong>Advanced Use:</strong> Mainly for meme builds or specific scenarios. Not recommended for standard training.
+                            </p>
+                        </div>
+
+                        <h3>Wisdom Support Cards</h3>
+                        <div class="chart-container">
+                            <img src="https://i.imgur.com/p7Vwsu3.png" 
+                                 alt="Wisdom Support Card Tier List" 
+                                 style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                                <strong>Energy Recovery:</strong> Most Wisdom cards gain an extra point of energy recovery at MLB, except Ikuno who doesn't provide energy.
+                            </p>
                         </div>
 
                         <h3>Card Selection Considerations</h3>
@@ -854,6 +971,14 @@
                         <h2>Breeding Strategy</h2>
 
                         <h3>Understanding Inheritance Factors</h3>
+                        
+                        <div class="image-placeholder">
+                            <div class="icon">🧬</div>
+                            <h4>Inheritance Screen</h4>
+                            <p>Shows blue, pink, and other factors from parents and grandparents</p>
+                            <small>Image placeholder - Replace with inheritance interface screenshot</small>
+                        </div>
+
                         <div class="card">
                             <h4>Factor Types</h4>
                             <ul>
@@ -861,6 +986,15 @@
                                 <li><strong>Pink Factors (Aptitudes):</strong> Raise letter grades for distance/surface</li>
                                 <li><strong>Green/Gray Factors:</strong> Skill hints and race bonuses</li>
                             </ul>
+                        </div>
+
+                        <div class="chart-container">
+                            <h4>3★ Factor Probability by Stat Value</h4>
+                            <div class="image-placeholder">
+                                <div class="icon">📈</div>
+                                <p>Chart showing 3★ factor chances: &lt;600 = 0%, 600-1100 = ~6%, &gt;1100 = ~10%</p>
+                                <small>Replace with actual probability chart</small>
+                            </div>
                         </div>
 
                         <h3>Beginning Breeding Strategy</h3>
