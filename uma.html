@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uma Musume Reference Guide - Global Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b9d;
+            --secondary-color: #4ecdc4;
+            --accent-color: #45b7d1;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            box-shadow: var(--card-shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: -2rem;
+            border-radius: 2rem 2rem 0 0;
+            padding: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .sidebar h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 0.5rem;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Content Area */
+        .content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .section h4 {
+            color: var(--dark-color);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--light-color);
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: var(--dark-color);
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Alert boxes */
+        .alert {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            border-left-color: var(--accent-color);
+            color: #1565c0;
+        }
+
+        .alert-warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+            color: #e65100;
+        }
+
+        .alert-success {
+            background: #e8f5e8;
+            border-left-color: var(--secondary-color);
+            color: #2e7d32;
+        }
+
+        /* Search */
+        .search-container {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+
+        /* Quick Links Styling */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .quick-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Uma Musume Guide</div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#getting-started" onclick="showSection('getting-started')">Getting Started</a></li>
+                <li><a href="#training" onclick="showSection('training')">Training</a></li>
+                <li><a href="#pvp" onclick="showSection('pvp')">PvP</a></li>
+                <li><a href="#support-cards" onclick="showSection('support-cards')">Support Cards</a></li>
+                <li><a href="#breeding" onclick="showSection('breeding')">Breeding</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Uma Musume Reference Guide</h1>
+            <p>~ Global Edition ~</p>
+            <p>Your comprehensive guide to mastering Uma Musume: Pretty Derby</p>
+            <div class="hero-buttons">
+                <a href="#getting-started" class="btn btn-primary" onclick="showSection('getting-started')">Get Started</a>
+                <a href="#tier-list" class="btn btn-secondary" onclick="showSection('support-cards')">Tier Lists</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search the guide..." id="searchInput">
+            </div>
+
+            <div class="content-grid">
+                <aside class="sidebar">
+                    <h3>Quick Navigation</h3>
+                    <ul>
+                        <li><a href="#home" onclick="showSection('home')" class="active">Home</a></li>
+                        <li><a href="#getting-started" onclick="showSection('getting-started')">Getting Started</a></li>
+                        <li><a href="#rerolling" onclick="showSection('rerolling')">Rerolling</a></li>
+                        <li><a href="#training" onclick="showSection('training')">Training Strategy</a></li>
+                        <li><a href="#support-cards" onclick="showSection('support-cards')">Support Cards</a></li>
+                        <li><a href="#breeding" onclick="showSection('breeding')">Breeding</a></li>
+                        <li><a href="#pvp" onclick="showSection('pvp')">PvP Guide</a></li>
+                        <li><a href="#skills" onclick="showSection('skills')">Skills</a></li>
+                        <li><a href="#currencies" onclick="showSection('currencies')">Currencies</a></li>
+                        <li><a href="#uma-tips" onclick="showSection('uma-tips')">Uma-Specific Tips</a></li>
+                        <li><a href="#faq" onclick="showSection('faq')">FAQ</a></li>
+                    </ul>
+                </aside>
+
+                <div class="content">
+                    <!-- Home Section -->
+                    <div class="section active" id="home">
+                        <h2>Welcome to the Uma Musume Reference Guide</h2>
+                        <div class="alert alert-info">
+                            <strong>Quick Start Recommendation:</strong> If you want to start the game RIGHT NOW, reroll for a copy of Super Creek. Her healing skill is very potent and she's ideal in most Medium and Long decks.
+                        </div>
+
+                        <div class="quick-links">
+                            <a href="#getting-started" class="quick-link" onclick="showSection('getting-started')">Getting Started</a>
+                            <a href="#support-cards" class="quick-link" onclick="showSection('support-cards')">Support Card Tier List</a>
+                            <a href="#training" class="quick-link" onclick="showSection('training')">Training Strategy</a>
+                            <a href="#breeding" class="quick-link" onclick="showSection('breeding')">Breeding Guide</a>
+                        </div>
+
+                        <h3>About This Guide</h3>
+                        <p>This comprehensive reference guide was originally created by <strong>Erzzy</strong> and is currently being updated by <strong>Kireina</strong> for the Global edition of Uma Musume: Pretty Derby.</p>
+                        
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>For New Players</h4>
+                                <p>Start with rerolling, understand the basics of training, and follow our new player checklist to get the most out of your first month.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Support Cards</h4>
+                                <p>Comprehensive tier lists and build recommendations for all distances and strategies. Updated for the current Global meta.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Training & Breeding</h4>
+                                <p>Advanced strategies for creating the perfect Uma, from basic training flows to complex inheritance planning.</p>
+                            </div>
+                            <div class="card">
+                                <h4>PvP Mastery</h4>
+                                <p>Dominate Stadium and Champion's Meeting with detailed guides on team building and track analysis.</p>
+                            </div>
+                        </div>
+
+                        <h3>Recent Updates</h3>
+                        <div class="alert alert-success">
+                            <strong>July 6, 2025:</strong> 99.9% of current and relevant information has been translated and updated for Global. Screenshots and verification ongoing.
+                        </div>
+                    </div>
+
+                    <!-- Getting Started Section -->
+                    <div class="section" id="getting-started">
+                        <h2>Getting Started</h2>
+                        
+                        <h3>Your First Month Checklist</h3>
+                        <div class="card">
+                            <h4>Essential Steps (In Order)</h4>
+                            <ol>
+                                <li><strong>Reroll if you're going to</strong> - It's extremely helpful and fast in Uma Musume</li>
+                                <li><strong>Level up cards</strong> - Focus on cards you actually use in runs, not all cards</li>
+                                <li><strong>Read Basic Training Strategy</strong> - Your horse girls will thank you</li>
+                                <li><strong>Add friends</strong> - Get good parents for inheritance</li>
+                                <li><strong>Win every graded race once</strong> - Each first-time win gives jewels</li>
+                                <li><strong>Mark good parents</strong> - Any uma with 3★ blue or 2★ blue + 3★ pink factors</li>
+                                <li><strong>Spark on current banner</strong> - If you rerolled on it (200 total pulls)</li>
+                                <li><strong>Do 30-50 uma rolls</strong> - Collect 1★ and 2★ umas, then save for sparks</li>
+                                <li><strong>Train for each distance</strong> - Sprint, Mile, Medium, Long, and Dirt umas</li>
+                                <li><strong>Join a Club</strong> - Start trading shoes for Trainer Medals</li>
+                            </ol>
+                        </div>
+
+                        <h3>Tips for New Players</h3>
+                        <div class="alert alert-warning">
+                            <strong>Important:</strong> Save your 3★ uma pick ticket until you finish the missions to avoid duplicates from random tickets.
+                        </div>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Ticket Usage</h4>
+                                <p>If you don't have Super Creek, get Super Creek. If you do, use it to limit break one of your SSRs rather than getting a new one.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Club Benefits</h4>
+                                <p>Join a club ASAP. Trading shoes gives Trainer Medals for limit breaking story SSR cards. Look for clubs with many active members.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Money Management</h4>
+                                <p>Don't buy anything from random shops except clocks. Money is precious and most shop items aren't valuable.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Parent Strategy</h4>
+                                <p>Always borrow other players' umas as parents (3 times daily). Borrowed parents give +63 stats vs your own +15 stats.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rerolling Section -->
+                    <div class="section" id="rerolling">
+                        <h2>Rerolling Guide</h2>
+                        
+                        <div class="alert alert-info">
+                            <strong>Why Reroll:</strong> Rerolling in Uma Musume is extremely fast since you don't need to redownload the game and can skip tutorials after the first time.
+                        </div>
+
+                        <h3>Rerolling Strategy</h3>
+                        <p><strong>Always spend everything on Support Cards</strong> - they determine your account power. Umas are essentially cosmetic costumes with minimal gameplay impact.</p>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Ideal Reroll Process</h4>
+                                <ol>
+                                    <li>Get banner card to 1LB+ through initial pulls</li>
+                                    <li>Farm through runs to clear all races</li>
+                                    <li>Get enough Carats for 200 pulls on banner</li>
+                                    <li>Hopefully MLB the card in this process</li>
+                                </ol>
+                            </div>
+                            <div class="card">
+                                <h4>Quick Reroll Targets</h4>
+                                <ul>
+                                    <li><strong>Super Creek</strong> - Healing skill, essential for Medium/Long</li>
+                                    <li><strong>Tazuna</strong> - Good with few copies</li>
+                                    <li><strong>Fine Motion</strong> - Excellent early game card</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>Best Start:</strong> Wait for Kitasan Black banner and reroll for 1LB, then farm to 3+LB. Kitasan MLB is like having every card in the game!
+                        </div>
+                    </div>
+
+                    <!-- Training Section -->
+                    <div class="section" id="training">
+                        <h2>Training Strategy</h2>
+
+                        <h3>Basic Training Flow</h3>
+                        <div class="card">
+                            <h4>Early Phase Strategy</h4>
+                            <p>Focus on raising bond levels of support cards. Once every card is bonded, wait for rainbows and train Wisdom or do races if no rainbow is available.</p>
+                        </div>
+
+                        <h3>Support Card Builds by Distance</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Distance</th>
+                                        <th>Build</th>
+                                        <th>Ideal Stats</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sprint</td>
+                                        <td>3 Speed + 2 Power</td>
+                                        <td>1200/500/1200/300/400</td>
+                                        <td>Borrow MLB Kitasan, inherit Power + Stamina</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mile/Dirt</td>
+                                        <td>4 Speed + 1 Power</td>
+                                        <td>1200/700/900/300/400</td>
+                                        <td>Borrow MLB Kitasan, inherit Stamina</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium</td>
+                                        <td>3 Speed + 2 Stamina</td>
+                                        <td>1200/800/800/300/400</td>
+                                        <td>Need 1 Golden Recovery, inherit Power</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Long</td>
+                                        <td>3 Speed + 2 Stamina</td>
+                                        <td>900-1200/900-1200/600-700/400/400</td>
+                                        <td>Need 2-3 Golden Recoveries, varies by target distance</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Training Priority Guidelines</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Bonding Phase</h4>
+                                <ul>
+                                    <li>Prioritize trainings with most support cards</li>
+                                    <li>Focus on trainings you want to level up</li>
+                                    <li>Wisdom training costs no energy</li>
+                                    <li>Hints give +5 bond per card</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Rainbow Priority</h4>
+                                <ul>
+                                    <li>Power rainbows > Speed rainbows in 5 Speed builds</li>
+                                    <li>Avoid single rainbows if they risk failure</li>
+                                    <li>Double fail chance rule: don't do if stats < 2x fail chance</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Race Efficiency</h4>
+                                <ul>
+                                    <li>G1 races: 2.86 points per energy</li>
+                                    <li>Do G1s if no strong double/triple rainbow</li>
+                                    <li>Races give stats + skill points</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Motivation Management</h4>
+                                <ul>
+                                    <li>1.16x multiplier per motivation level</li>
+                                    <li>Worth dating if 6+ good training turns follow</li>
+                                    <li>Check for upcoming motivation events</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support Cards Section -->
+                    <div class="section" id="support-cards">
+                        <h2>Support Card Tier Lists</h2>
+                        
+                        <div class="alert alert-info">
+                            <strong>Note:</strong> These tier lists are based on cards' ability to provide stats. You may choose lower tier cards for specific skills (e.g., Super Creek for Swinging Maestro).
+                        </div>
+
+                        <h3>Speed Support Cards</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tier</th>
+                                        <th>MLB Cards</th>
+                                        <th>2LB Cards</th>
+                                        <th>0LB Cards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>S</strong></td>
+                                        <td>Kitasan Black</td>
+                                        <td>Kitasan Black</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>A</strong></td>
+                                        <td>Biko Pegasus, Kawakami Princess</td>
+                                        <td>Biko Pegasus</td>
+                                        <td>Kitasan Black</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>B</strong></td>
+                                        <td>Tokai Teio, Special Week, Shinko Windy</td>
+                                        <td>Kawakami Princess, Tokai Teio</td>
+                                        <td>Biko Pegasus</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>C</strong></td>
+                                        <td>Gold City, Sweep Tosho</td>
+                                        <td>Special Week, Shinko Windy</td>
+                                        <td>Tokai Teio, Special Week</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Stamina Support Cards</h3>
+                        <div class="alert alert-warning">
+                            <strong>Super Creek Note:</strong> Although only C tier for stats, her skill is practically required for Medium/Long distance umas. Having her lets you borrow MLB Kitasan instead.
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tier</th>
+                                        <th>MLB Cards</th>
+                                        <th>2LB Cards</th>
+                                        <th>0LB Cards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>S</strong></td>
+                                        <td>Vodka, Rice Shower</td>
+                                        <td>Vodka, Rice Shower</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>A</strong></td>
+                                        <td>McQueen, Satono Diamond</td>
+                                        <td>McQueen, Satono Diamond</td>
+                                        <td>Vodka, Rice Shower</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>B</strong></td>
+                                        <td>Manhattan Cafe, Sakura Chiyono</td>
+                                        <td>Manhattan Cafe</td>
+                                        <td>McQueen, Satono Diamond</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>C</strong></td>
+                                        <td>Super Creek</td>
+                                        <td>Super Creek</td>
+                                        <td>Super Creek</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Card Selection Considerations</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Race Bonus Threshold</h4>
+                                <p>Try to reach 34%+ Race Bonus for significant stat gains. There's a big jump from 30% to 35% bonus.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Secondary Stats</h4>
+                                <p>Some cards provide bonus stats (e.g., Power bonus on Speed cards). Consider these for build optimization.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Hint Rates</h4>
+                                <p>Cards with high hint rates are valuable in Stadium PvP for skill activation points.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Starting Bond</h4>
+                                <p>Cards with Starting Bond Up reduce time to reach orange bond and get rainbows faster.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breeding Section -->
+                    <div class="section" id="breeding">
+                        <h2>Breeding Strategy</h2>
+
+                        <h3>Understanding Inheritance Factors</h3>
+                        <div class="card">
+                            <h4>Factor Types</h4>
+                            <ul>
+                                <li><strong>Blue Factors (Stats):</strong> 1★ = +5, 2★ = +12, 3★ = +21 to base stats</li>
+                                <li><strong>Pink Factors (Aptitudes):</strong> Raise letter grades for distance/surface</li>
+                                <li><strong>Green/Gray Factors:</strong> Skill hints and race bonuses</li>
+                            </ul>
+                        </div>
+
+                        <h3>Beginning Breeding Strategy</h3>
+                        <div class="alert alert-info">
+                            <strong>Goal:</strong> Create 9★ parents (3★ + 3★ + 3★ from self and both parents) for maximum stat inheritance (+63 stats).
+                        </div>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Step 1: First Parent</h4>
+                                <ol>
+                                    <li>Use your 2★ factor uma + borrowed 3★ uma</li>
+                                    <li>Aim for 2★ factor → creates 7★ uma (45 stats)</li>
+                                    <li>Repeat until you hit 3★ factor → 8★ uma (54 stats)</li>
+                                </ol>
+                            </div>
+                            <div class="card">
+                                <h4>Step 2: Second Parent</h4>
+                                <ol>
+                                    <li>Use your 3★ base + borrowed 3★ uma</li>
+                                    <li>Any 2★ factor → 8★ uma</li>
+                                    <li>3★ factor → 9★ uma (63 stats)</li>
+                                </ol>
+                            </div>
+                            <div class="card">
+                                <h4>Step 3: Complete Set</h4>
+                                <ol>
+                                    <li>Use two 3★ base umas together</li>
+                                    <li>Continue until second 9★ uma</li>
+                                    <li>Now you can breed without rentals!</li>
+                                </ol>
+                            </div>
+                            <div class="card">
+                                <h4>3★ Factor Chances</h4>
+                                <ul>
+                                    <li>Stat &lt;600: 0% chance</li>
+                                    <li>Stat 600-1100: ~6% chance</li>
+                                    <li>Stat &gt;1100: ~10% chance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Compatibility System</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Compatibility</th>
+                                        <th>Effect</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>△</td>
+                                        <td>Bad</td>
+                                        <td>Lower inheritance chance</td>
+                                    </tr>
+                                    <tr>
+                                        <td>○</td>
+                                        <td>Good</td>
+                                        <td>Normal inheritance chance</td>
+                                    </tr>
+                                    <tr>
+                                        <td>◎</td>
+                                        <td>Great</td>
+                                        <td>Higher inheritance chance</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- PvP Section -->
+                    <div class="section" id="pvp">
+                        <h2>PvP Guide</h2>
+
+                        <h3>Stadium Format</h3>
+                        <div class="card">
+                            <h4>How Stadium Works</h4>
+                            <ul>
+                                <li>Five 1v1 races initially, progressing to 3v3 races</li>
+                                <li>Categories: Sprint, Mile, Medium, Long, Dirt</li>
+                                <li>Win 3/5 categories to win the match</li>
+                                <li>Score based on performance, not just winning</li>
+                                <li>Need 15 unique umas eventually (no duplicates)</li>
+                            </ul>
+                        </div>
+
+                        <h3>F2P Team Recommendations</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Distance</th>
+                                        <th>Front Runner</th>
+                                        <th>Pace Chaser</th>
+                                        <th>Late Surger</th>
+                                        <th>End Closer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Sprint</strong></td>
+                                        <td>Sakura Bakushin O</td>
+                                        <td>Air Groove*</td>
+                                        <td>King Halo</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Mile</strong></td>
+                                        <td>Daiwa Scarlet</td>
+                                        <td>Vodka</td>
+                                        <td>Grass Wonder</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Medium</strong></td>
+                                        <td>-</td>
+                                        <td>Agnes Tachyon</td>
+                                        <td>Winning Ticket/Mejiro Ryan</td>
+                                        <td>Nice Nature*</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Long</strong></td>
+                                        <td>-</td>
+                                        <td>Super Creek</td>
+                                        <td>Matikanefukukitaru</td>
+                                        <td>Gold Ship</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dirt</strong></td>
+                                        <td>Mayano Top Gun*</td>
+                                        <td>El Condor Pasa*</td>
+                                        <td>Haru Urara*</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><em>* Requires aptitude inheritance</em></p>
+
+                        <h3>Champion's Meeting</h3>
+                        <div class="alert alert-info">
+                            <strong>Format:</strong> Monthly 3v3v3 tournament on the same track. Highly specialized umas can dominate.
+                        </div>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Track Analysis</h4>
+                                <ul>
+                                    <li>Spurt start location (Track Length ÷ 3)</li>
+                                    <li>Final corner timing</li>
+                                    <li>Hill locations and angles</li>
+                                    <li>Track-specific green skills</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Strategy Considerations</h4>
+                                <ul>
+                                    <li>Only need 3 umas (not 15)</li>
+                                    <li>Can duplicate strategies</li>
+                                    <li>Winning matters more than score</li>
+                                    <li>Debuffs are popular</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Grade vs Open League</h4>
+                                <ul>
+                                    <li><strong>Grade:</strong> Any uma, better rewards</li>
+                                    <li><strong>Open:</strong> B rank or worse only</li>
+                                    <li>Grade 3rd ≈ Open 1st in rewards</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Key Skills by Track Type</h4>
+                                <ul>
+                                    <li><strong>Corner Spurt:</strong> Acceleration skills</li>
+                                    <li><strong>Straight Spurt:</strong> Speed skills</li>
+                                    <li><strong>Hills:</strong> Power-based skills</li>
+                                    <li><strong>Weather/Season:</strong> Conditional greens</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="section" id="skills">
+                        <h2>Skills Guide</h2>
+
+                        <h3>Skill Categories</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Green Skills (Stat Buffs)</h4>
+                                <ul>
+                                    <li>Grant small stat buffs when conditions are met</li>
+                                    <li>First level: +40, Second level: +60</li>
+                                    <li>Can exceed stat caps</li>
+                                    <li>Only level once for efficiency</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Blue Skills (Recovery)</h4>
+                                <ul>
+                                    <li>Restore HP during races</li>
+                                    <li>Gold: 5.5% HP, White: 1.5% HP</li>
+                                    <li>Gold recoveries are essential for long distances</li>
+                                    <li>Best: Consistent timing (corner, straightaway)</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Orange Skills (Speed/Acceleration)</h4>
+                                <ul>
+                                    <li>Speed: +0.15-0.35 m/s for duration</li>
+                                    <li>Acceleration: +0.2-0.4 m/s/s for duration</li>
+                                    <li>Timing is crucial - spurt start acceleration is powerful</li>
+                                    <li>Duration scales with track length</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Red Skills (Debuffs)</h4>
+                                <ul>
+                                    <li>Affect enemy umas only</li>
+                                    <li>Speed debuffs: Always useful</li>
+                                    <li>Stamina debuffs: Powerful on longer tracks</li>
+                                    <li>All skills stack, even same names</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Best Skills by Category</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Best Skills</th>
+                                        <th>Why They're Good</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Recovery (Gold)</strong></td>
+                                        <td>Swinging Maestro, Gourmand, Race Planner</td>
+                                        <td>Consistent activation at good times</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Acceleration</strong></td>
+                                        <td>Taking the Lead, Corner Connoisseur, Seiun Sky Unique</td>
+                                        <td>Activate during crucial acceleration phases</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Speed</strong></td>
+                                        <td>Professor of Curvature, In Body and Mind, Distance Corners</td>
+                                        <td>Long duration, consistent activation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Debuff</strong></td>
+                                        <td>All-Seeing Eyes, Petrifying Gaze, Mystifying Murmur</td>
+                                        <td>Reliable activation, significant impact</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Skill Effectiveness Calculation</h3>
+                        <div class="alert alert-info">
+                            <strong>Speed Skills:</strong> Distance = Speed × Duration × (Track Length ÷ 1000)<br>
+                            <strong>Acceleration Skills:</strong> More complex - calculates time saved reaching top speed
+                        </div>
+                    </div>
+
+                    <!-- Currencies Section -->
+                    <div class="section" id="currencies">
+                        <h2>Currencies Guide</h2>
+
+                        <h3>Jewels (Carats)</h3>
+                        <div class="card">
+                            <h4>Primary Uses</h4>
+                            <ul>
+                                <li>Gacha rolls (most important)</li>
+                                <li>Energy refills</li>
+                                <li>Race point refills</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Renewable Sources</h4>
+                                <ul>
+                                    <li>Daily Missions: 30/day</li>
+                                    <li>Weekly Login: 110/week</li>
+                                    <li>Weekly PvP: up to 250/week</li>
+                                    <li>Monthly Club: 150-3000/month</li>
+                                    <li>Champion's Meeting: up to 3600/month</li>
+                                    <li>Bingo Events: ~1260/month</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>One-Time Sources</h4>
+                                <ul>
+                                    <li>Missions completion</li>
+                                    <li>First G1/G2/G3 race wins</li>
+                                    <li>Level ups (50 per level)</li>
+                                    <li>Uma story reading</li>
+                                    <li>Main story completion</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Other Important Currencies</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Currency</th>
+                                        <th>How to Earn</th>
+                                        <th>Main Uses</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Friend Points</strong></td>
+                                        <td>Others use your support card, PvP rewards</td>
+                                        <td>Friend Point shop, MLB Urara pieces</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Trainer Medals</strong></td>
+                                        <td>Others borrow your uma (100/day), trading shoes</td>
+                                        <td>Limit break story SSR cards</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Horseshoes</strong></td>
+                                        <td>Destroying duplicate support cards</td>
+                                        <td>Gacha tickets (1 SR/month per type)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Statues</strong></td>
+                                        <td>Duplicate uma pulls</td>
+                                        <td>Exchange for uma pieces (1:1 to 5:1 ratio)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Trainer Medal Priority</h3>
+                        <div class="alert alert-success">
+                            <strong>Recommended Order:</strong> Mejiro McQueen > Narita Brian > Winning Ticket > Rice Shower
+                        </div>
+                    </div>
+
+                    <!-- Uma-Specific Tips Section -->
+                    <div class="section" id="uma-tips">
+                        <h2>Uma-Specific Tips</h2>
+
+                        <h3>Key Strategies by Uma</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Super Creek</h4>
+                                <ul>
+                                    <li><strong>Distance:</strong> Medium/Long</li>
+                                    <li><strong>Strategy:</strong> Pace Chaser</li>
+                                    <li><strong>Special:</strong> Can't use Super Creek support card</li>
+                                    <li><strong>Notes:</strong> Unique skill = Golden Recovery at 3★+</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Kitasan Black</h4>
+                                <ul>
+                                    <li><strong>Best Support Card:</strong> Game-changing at MLB</li>
+                                    <li><strong>Priority:</strong> Highest reroll target</li>
+                                    <li><strong>Impact:</strong> Like having every card in the game</li>
+                                    <li><strong>Usage:</strong> Borrow her if you don't have MLB</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Oguri Cap</h4>
+                                <ul>
+                                    <li><strong>Distance:</strong> Dirt/Mile</li>
+                                    <li><strong>Strategy:</strong> Late Surger (best), Pace Chaser (ok)</li>
+                                    <li><strong>Condition:</strong> Needs to be 2nd-5th at 200m mark</li>
+                                    <li><strong>Notes:</strong> Strongest uma in starting set</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Haru Urara</h4>
+                                <ul>
+                                    <li><strong>Distance:</strong> Dirt only</li>
+                                    <li><strong>Strategy:</strong> End Closer/Late Surger</li>
+                                    <li><strong>Fan Goals:</strong> 40k, 60k, 80k (lower than others)</li>
+                                    <li><strong>Races:</strong> JBC Sprint + Champion's Cup for fans</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Gold Ship</h4>
+                                <ul>
+                                    <li><strong>Distance:</strong> Long</li>
+                                    <li><strong>Strategy:</strong> End Closer</li>
+                                    <li><strong>Special:</strong> Sometimes locks 4 training options</li>
+                                    <li><strong>Reward:</strong> Fall Triple Crown gives mood up</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4>Rice Shower</h4>
+                                <ul>
+                                    <li><strong>Distance:</strong> Medium/Long</li>
+                                    <li><strong>Strategy:</strong> Pace Chaser</li>
+                                    <li><strong>Critical Race:</strong> Tenno Sho Spring (6th objective)</li>
+                                    <li><strong>Requirement:</strong> 600+ stamina by this race</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Level-Up Priorities</h3>
+                        <div class="alert alert-info">
+                            <strong>Rating System:</strong> 1 = Bad, 2 = Wrong strategy, 3 = Inconsistent, 4 = Consistent, 5 = Very good
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Uma</th>
+                                        <th>Lv 2</th>
+                                        <th>Lv 3</th>
+                                        <th>Lv 4</th>
+                                        <th>Lv 5</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Agnes Tachyon</td>
+                                        <td>4</td>
+                                        <td>2</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>Medium Pace Chaser</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gold Ship</td>
+                                        <td>4</td>
+                                        <td>4</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>Long End Closer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Super Creek</td>
+                                        <td>3</td>
+                                        <td>4</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>Med/Long Pace Chaser</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vodka</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>4</td>
+                                        <td>4</td>
+                                        <td>Mile Late Surger</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nice Nature</td>
+                                        <td>4</td>
+                                        <td>4</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>Medium Late Surger</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="section" id="faq">
+                        <h2>Frequently Asked Questions</h2>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Why can't I use my newly pulled uma in PvP?</h4>
+                                <p>You need to train them first. Pulled umas are just templates - you must complete a training run to create a racing uma.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Is this 0LB SSR card good?</h4>
+                                <p>Probably not. 0LB SSRs are typically worse than limit broken SRs. Check the tier lists and focus on MLB cards.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Which scenario should I play?</h4>
+                                <p>You only have URA scenario currently! When more release, the newest (rightmost) scenario is usually best.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Why did I lose with higher stats?</h4>
+                                <p>You probably got blocked. Umas can get surrounded and unable to move. Use Front Runner strategy to minimize this.</p>
+                            </div>
+                            <div class="card">
+                                <h4>How do I win difficult races?</h4>
+                                <p>Most common issue is lack of Stamina. Check the Required Stamina Chart and subtract 600 for training targets.</p>
+                            </div>
+                            <div class="card">
+                                <h4>What skills should I buy?</h4>
+                                <p>Pick one distance and one strategy your uma has A+ in. Buy skills ending with those tags (e.g., ＜中距離＞, ＜作戦・先行＞).</p>
+                            </div>
+                            <div class="card">
+                                <h4>Do debuffs affect my own team?</h4>
+                                <p>No, debuffs only affect enemy umas. They're safe to use and won't hurt your own team members.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Do skills stack?</h4>
+                                <p>Yes, all skills stack. Even skills with the same name will stack their effects.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Can green skills exceed stat caps?</h4>
+                                <p>Yes, green skills can raise your stats to the internal cap of 2000, beyond the normal training caps.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Which SSR should I pick with tickets?</h4>
+                                <p>If you don't have Super Creek, get Super Creek. Otherwise, use it to limit break existing SSRs rather than getting new ones.</p>
+                            </div>
+                        </div>
+
+                        <h3>Common Troubleshooting</h3>
+                        <div class="alert alert-warning">
+                            <strong>Fan Requirements:</strong> If you see a person icon with numbers, you're lacking fans for mandatory races. Do optional races immediately or your run will fail.
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Problem</th>
+                                        <th>Most Likely Cause</th>
+                                        <th>Solution</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Losing races with good stats</td>
+                                        <td>Insufficient Stamina or blocking</td>
+                                        <td>Check stamina requirements, use Front Runner</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Can't enter important race</td>
+                                        <td>Not enough fans</td>
+                                        <td>Do optional races with 2-star rating</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Low training gains</td>
+                                        <td>Poor motivation or weak cards</td>
+                                        <td>Date to raise motivation, check card bonds</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Can't get rainbows</td>
+                                        <td>Support cards not bonded</td>
+                                        <td>Focus on bonding phase before chasing rainbows</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Uma Musume Reference Guide - Global Edition</p>
+            <p>Originally by Erzzy, currently updated by Kireina for Global translations</p>
+            <p>This guide is a community effort to help trainers succeed in Uma Musume: Pretty Derby</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update sidebar navigation
+            const navLinks = document.querySelectorAll('.sidebar a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + sectionId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top of content
+            document.querySelector('.content').scrollTop = 0;
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('.section');
+            
+            if (searchTerm === '') {
+                // If search is empty, show home section
+                showSection('home');
+                return;
+            }
+
+            // Search through all sections
+            let foundMatch = false;
+            sections.forEach(section => {
+                const content = section.textContent.toLowerCase();
+                if (content.includes(searchTerm)) {
+                    if (!foundMatch) {
+                        showSection(section.id);
+                        foundMatch = true;
+                    }
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                showSection(targetId);
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
+
+        // Table sorting functionality
+        function sortTable(table, column, asc = true) {
+            const dirModifier = asc ? 1 : -1;
+            const tBody = table.tBodies[0];
+            const rows = Array.from(tBody.querySelectorAll('tr'));
+
+            const sortedRows = rows.sort((a, b) => {
+                const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+                const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+
+                return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+            });
+
+            while (tBody.firstChild) {
+                tBody.removeChild(tBody.firstChild);
+            }
+
+            tBody.append(...sortedRows);
+        }
+
+        // Add click handlers to table headers
+        document.querySelectorAll('th').forEach((headerCell, index) => {
+            headerCell.style.cursor = 'pointer';
+            headerCell.addEventListener('click', () => {
+                const tableElement = headerCell.closest('table');
+                const currentIsAscending = headerCell.classList.contains('asc');
+                
+                // Remove sorting classes from all headers in this table
+                tableElement.querySelectorAll('th').forEach(th => {
+                    th.classList.remove('asc', 'desc');
+                });
+
+                // Add appropriate class to clicked header
+                headerCell.classList.toggle('asc', !currentIsAscending);
+                headerCell.classList.toggle('desc', currentIsAscending);
+
+                sortTable(tableElement, index, !currentIsAscending);
+            });
+        });
+
+        // Highlight search terms
+        function highlightSearchTerm(searchTerm) {
+            if (!searchTerm) return;
+            
+            const activeSection = document.querySelector('.section.active');
+            if (!activeSection) return;
+
+            // Remove previous highlights
+            activeSection.querySelectorAll('.highlight').forEach(el => {
+                el.outerHTML = el.innerHTML;
+            });
+
+            // Add new highlights
+            const walker = document.createTreeWalker(
+                activeSection,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
+
+            textNodes.forEach(textNode => {
+                const text = textNode.textContent;
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                if (regex.test(text)) {
+                    const highlightedText = text.replace(regex, '<span class="highlight" style="background: yellow; padding: 2px;">$1</span>');
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = highlightedText;
+                    textNode.parentNode.replaceChild(wrapper, textNode);
+                }
+            });
+        }
+
+        // Enhanced search with highlighting
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                showSection('home');
+                return;
+            }
+
+            const sections = document.querySelectorAll('.section');
+            let bestMatch = null;
+            let highestScore = 0;
+
+            sections.forEach(section => {
+                const content = section.textContent.toLowerCase();
+                const titleElement = section.querySelector('h2');
+                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                
+                let score = 0;
+                
+                // Higher score for title matches
+                if (title.includes(searchTerm)) {
+                    score += 100;
+                }
+                
+                // Score for content matches
+                const matches = (content.match(new RegExp(searchTerm, 'g')) || []).length;
+                score += matches;
+
+                if (score > highestScore) {
+                    highestScore = score;
+                    bestMatch = section;
+                }
+            });
+
+            if (bestMatch && highestScore > 0) {
+                showSection(bestMatch.id);
+                setTimeout(() => highlightSearchTerm(searchTerm), 100);
+            }
+        });
+
+        // Add tooltips for complex terms
+        const tooltips = {
+            'MLB': 'Max Limit Break - A support card with maximum limit breaks (4 total)',
+            'LB': 'Limit Break - Upgrading a card using duplicate copies',
+            'SSR': 'Super Super Rare - The highest rarity tier for cards and umas',
+            'Uma': 'The horse girls you train and race',
+            'Spark': 'Guaranteed SSR selection after 200 pulls on the same banner',
+            'Rainbow': 'Training with friendship bonus from multiple support cards'
+        };
+
+        // Create tooltip elements
+        Object.keys(tooltips).forEach(term => {
+            const regex = new RegExp(`\\b${term}\\b`, 'g');
+            document.querySelectorAll('.section').forEach(section => {
+                section.innerHTML = section.innerHTML.replace(regex, 
+                    `<span class="tooltip-term" data-tooltip="${tooltips[term]}">${term}</span>`
+                );
+            });
+        });
+
+        // Add tooltip styling and behavior
+        const style = document.createElement('style');
+        style.textContent = `
+            .tooltip-term {
+                border-bottom: 1px dotted var(--primary-color);
+                cursor: help;
+                position: relative;
+            }
+            
+            .tooltip-term:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--dark-color);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+            
+            .tooltip-term:hover::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(1px);
+                border: 5px solid transparent;
+                border-top-color: var(--dark-color);
+                z-index: 1000;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add progress indicator for long sections
+        function updateReadingProgress() {
+            const activeSection = document.querySelector('.section.active');
+            if (!activeSection) return;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+
+            let progressBar = document.querySelector('.reading-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.className = 'reading-progress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 3px;
+                    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+                    transition: width 0.3s ease;
+                    z-index: 1001;
+                `;
+                document.body.appendChild(progressBar);
+            }
+
+            progressBar.style.width = `${Math.min(progress, 100)}%`;
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // Add back to top button
+        const backToTopButton = document.createElement('button');
+        backToTopButton.innerHTML = '↑';
+        backToTopButton.className = 'back-to-top';
+        backToTopButton.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: var(--card-shadow);
+        `;
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.opacity = '1';
+                backToTopButton.style.transform = 'translateY(0)';
+            } else {
+                backToTopButton.style.opacity = '0';
+                backToTopButton.style.transform = 'translateY(10px)';
+            }
+        });
+
+        document.body.appendChild(backToTopButton);
+
+        // Add print styles
+        const printStyles = document.createElement('style');
+        printStyles.textContent = `
+            @media print {
+                .sidebar, .mobile-menu, .back-to-top, .reading-progress {
+                    display: none !important;
+                }
+                .content-grid {
+                    grid-template-columns: 1fr !important;
+                }
+                .section {
+                    display: block !important;
+                    page-break-inside: avoid;
+                }
+                .card {
+                    page-break-inside: avoid;
+                }
+                body {
+                    background: white !important;
+                }
+            }
+        `;
+        document.head.appendChild(printStyles);
+
+        console.log('Uma Musume Reference Guide loaded successfully!');
+        console.log('Use Ctrl+K to focus search, or navigate with the sidebar.');
+    </script>
+</body>
+</html>
